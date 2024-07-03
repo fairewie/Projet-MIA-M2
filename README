@@ -1,2 +1,17 @@
 expo
 kaggle / IA
+
+# Installation
+```bash
+pip install -r requirements.txt
+```
+
+# Lancer le projet expo
+```bash
+cd Front
+npm install
+npm start
+```
+
+
+télécharger les images d'entrainement sur https://www.kaggle.com/datasets/asaniczka/pc-parts-images-dataset-classification?resource=download&select=pc_parts si besoin
