@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Button, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Camera } from 'expo-camera';
-import { IPCONFIG } from '@env'
 
 
 interface FileForUpload {
@@ -13,7 +12,7 @@ interface FileForUpload {
 
 export default function App() {
     const [hasPermission, setHasPermission] = React.useState(false);
-
+    const IPCONFIG = process.env.IPCONFIG;
     const testServerConnection = async () => {
         console.log("Tentative de connexion au serveur...");
         try {
