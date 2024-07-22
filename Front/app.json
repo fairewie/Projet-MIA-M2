@@ -13,13 +13,23 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "$(PRODUCT_NAME) a besoin d'acceder a votre camera",
+        "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) a besoin d'acceder a votre micro."
+      },
+      "bundleIdentifier": "com.anonymous.Front"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.anonymous.Front"
     },
     "web": {
       "bundler": "metro",
@@ -29,16 +39,32 @@
     "plugins": [
       "expo-router",
       [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "$(PRODUCT_NAME) a besoin d'accéder à votre camera",
+          "enableMicrophonePermission": true,
+          "microphonePermissionText": "$(PRODUCT_NAME) a besoin d'accéder à votre micro."
+        }
+      ],
+      [
         "expo-camera",
         {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
-          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "cameraPermission": "Autoriser $(PRODUCT_NAME) à accéder à votre camera",
+          "microphonePermission": "Autoriser $(PRODUCT_NAME) à accéder à votre microphone",
           "recordAudioAndroid": true
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "51c44cbb-c23b-4d24-94bb-d0b83619de64"
+      }
     }
   }
 }

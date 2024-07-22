@@ -11,7 +11,6 @@ interface FileForUpload {
 }
 
 export default function App() {
-    const [hasPermission, setHasPermission] = React.useState(false);
     const IPCONFIG = process.env.IPCONFIG;
     const testServerConnection = async () => {
         console.log("Tentative de connexion au serveur...");
@@ -65,36 +64,8 @@ export default function App() {
             Alert.alert('Network Error', 'Failed to connect to the server.');
         }
     };
-    React.useEffect(() => {
-        (async () => {
-            const cameraStatus = await Camera.requestCameraPermissionsAsync();
-            const imagePickerStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
-            setHasPermission(cameraStatus.status === 'granted' && imagePickerStatus.status === 'granted');
-        })();
-    }, []);
 
-    if (hasPermission === null) {
-        return <View />;
-    }
-    if (hasPermission === false) {
-        return <View style={styles.container}>
-            <Button title="Grant permission in settings" onPress={() => Alert.alert("Permissions required", "Please enable permissions in settings.")} />
-        </View>;
-    }
 
-    const openCamera = async () => {
-        let result = await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-        if (!result.canceled) {
-            // handle the image or video captured
-            Alert.alert('Image Captured', result.assets[0].uri);
-        }
-    };
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
