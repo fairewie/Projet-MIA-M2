@@ -1,9 +1,9 @@
-import { CameraType, CameraView, useCameraPermissions } from 'expo-camera';
+import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function App() {
-    const [facing, setFacing] = useState<CameraType | undefined>('back');
+    const [facing, setFacing] = useState<CameraType>('back');
     const [permission, requestPermission] = useCameraPermissions();
 
     if (!permission) {
@@ -15,7 +15,7 @@ export default function App() {
         // Camera permissions are not granted yet.
         return (
             <View style={styles.container}>
-                <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
+                <Text style={styles.message}>We need your permission to show the camera</Text>
                 <Button onPress={requestPermission} title="grant permission" />
             </View>
         );
@@ -42,6 +42,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+    },
+    message: {
+        textAlign: 'center',
+        paddingBottom: 10,
     },
     camera: {
         flex: 1,

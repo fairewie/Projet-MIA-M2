@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Button, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Camera } from 'expo-camera';
 
 
 interface FileForUpload {
