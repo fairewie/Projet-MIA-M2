@@ -3,9 +3,13 @@ from werkzeug.utils import secure_filename
 from tensorflow.keras.models import load_model
 import cv2
 import numpy as np
+from flask_cors import CORS
 
 app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000  # par exemple, 16 megabytes
+
+CORS(app)
+
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000 
 
 # Charger le modèle
 model = load_model('../IA/detecPc.h5')
